@@ -1,0 +1,63 @@
+@font-face {
+  font-family: "Buenos Aires"; /* Define your font family name */
+  src: url("../web-fonts/buenosairesweb-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Buenos Aires Light"; /* Define your font family name */
+  src: url("../web-fonts/buenosairesweb-thin.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Buenos Aires", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.lighter {
+  font-family: "Buenos Aires Light", sans-serif;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: gray;
+}
+.nav-link:hover {
+  color: #ff6b56 !important;
+}
+.second-btn:hover {
+  background: linear-gradient(to right, #fe9950, #ff6b56) !important;
+  color: white !important;
+  border: 0;
+}
+
+.list-item > li {
+  background-image: url(../img/svg/services-start-icon.svg);
+  list-style: none;
+  background-repeat: no-repeat;
+  margin: 0 0 5px;
+  padding: 10px 0 10px 59px;
+}
+.list-item2 > li {
+  background-image: url(../img/svg/kc_platform_ul_bg.svg);
+  list-style: none;
+  background-repeat: no-repeat;
+  margin: 0 0 5px;
+  padding: 10px 0 20px 59px;
+}
+.cta-btn {
+  background: linear-gradient(to right, #fe9950, #ff6b56);
+  color: white !important;
+  border: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .main-btn {
+    background: linear-gradient(to right, #fe9950, #ff6b56);
+    color: white !important;
+    border: 0;
+  }
+}
