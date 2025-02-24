@@ -26,16 +26,16 @@
 
                     <li class="header-right-item">
                         <div class="dropdown admin-profile">
-                            <div class="d-xxl-flex align-items-center bg-transparent border-0 text-start p-0 cursor" data-bs-toggle="dropdown">
+                            <div class="d-lg-flex align-items-center bg-transparent border-0 text-start p-0 cursor" data-bs-toggle="dropdown">
                                 <div class="flex-shrink-0">
                                     <img class="rounded-circle wh-54" src="assets/images/admin.jpg" alt="admin">
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-none d-xxl-block">
-                                            <span class="degeneration">Admin</span>
+                                        <div class="d-none d-lg-block">
+                                            <span class="degeneration">Agent</span>
                                             <div class="d-flex align-content-center">
-                                                <h3>Adison Jeck</h3>
+                                                <h3><?= $agentInfo["firstname"] ?? ""; ?></h3>
                                                 <div class="down">
                                                     <i data-feather="chevron-down"></i>
                                                 </div>
@@ -47,13 +47,13 @@
 
                             <ul class="dropdown-menu border-0 bg-white w-100 admin-link">
                                 <li>
-                                    <a class="dropdown-item d-flex align-items-center text-body" href="profile.html">
+                                    <a class="dropdown-item d-flex align-items-center text-body" href="profile.php">
                                         <i data-feather="user"></i>
                                         <span class="ms-2">Profile</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item d-flex align-items-center text-body" href="logout.html">
+                                    <a class="dropdown-item d-flex align-items-center text-body" href="logout.php">
                                         <i data-feather="log-out"></i>
                                         <span class="ms-2">Logout</span>
                                     </a>

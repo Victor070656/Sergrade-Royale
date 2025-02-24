@@ -83,6 +83,20 @@ $applicantsAP = $getApprovedApplicants->num_rows;
             <!-- End Header Area -->
 
             <!-- Start Body Content Area -->
+
+            <div class="py-4">
+                <h2 class="fw-bold">
+                    <?php
+                    if (date("H") < 12) {
+                        echo "Good Morning ⛅";
+                    } elseif (date("H") < 17) {
+                        echo "Good Afternoon 🌞";
+                    } else {
+                        echo "Good Evening 🌙";
+                    }
+                    ?>, <?= $agentInfo["firstname"] ?>
+                </h2>
+            </div>
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="row justify-content-center">

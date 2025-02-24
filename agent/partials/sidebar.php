@@ -31,6 +31,12 @@
                     <span class="title">Applicants</span>
                 </a>
             </li>
+            <li class="menu-item">
+                <a href="bonus.php" class="menu-link ">
+                    <i data-feather="layers" class="menu-icon tf-icons"></i>
+                    <span class="title">Bonus</span>
+                </a>
+            </li>
 
             <!-- <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
@@ -97,8 +103,8 @@
                 </a>
             </div>
             <div class="flex-grow-1 ms-3 info">
-                <a href="profile.html" class="d-block name"><?= $agentInfo["firstname"] ?? "" ?></a>
-                <a href="logout.html">Log Out</a>
+                <a href="profile.php" class="d-block name"><?= $agentInfo["firstname"] ?? "" ?></a>
+                <a href="logout.php">Log Out</a>
             </div>
         </div>
     </div>

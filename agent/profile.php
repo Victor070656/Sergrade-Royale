@@ -207,63 +207,44 @@ $companyInfo = $getCompanyInfo->fetch_assoc();
                                                     </div>
 
                                                     <div class="">
-                                                        <button type="submit" name="add" class="btn btn-dark">UPDATE COMPANY</button>
+                                                        <button type="submit" name="update" class="btn btn-dark">UPDATE COMPANY</button>
                                                     </div>
                                                 </div>
                                                 <?php
-                                                if (isset($_POST["add"])) {
+                                                if (isset($_POST["update"])) {
                                                     // $applicationid = uniqid();
-                                                    $fname = $_POST["fname"];
-                                                    $mname = $_POST["mname"];
-                                                    $lname = $_POST["lname"];
-                                                    $dob = $_POST["dob"];
+                                                    $name = $_POST["name"];
+                                                    $addr = $_POST["addr"];
                                                     $country = $_POST["country"];
-                                                    $state = $_POST["state"];
+                                                    $phone = $_POST["phone"];
                                                     $email = $_POST["email"];
-                                                    $marital = $_POST["marital"];
-                                                    $no_of_child = $_POST["no_of_child"];
-                                                    $trav_with_fam = $_POST["trav_with_fam"];
-                                                    $first_child_age = $_POST["first_child_age"];
-                                                    $course_choice = $_POST["course_choice"];
-                                                    $first_deg = $_POST["first_deg"];
-                                                    $sponsor = $_POST["sponsor"];
-                                                    $travel_date = $_POST["travel_date"];
-                                                    $visa_refusal = $_POST["visa_refusal"];
-                                                    $visa_held = $_POST["visa_held"];
-                                                    $overstayed = $_POST["overstayed"];
-                                                    $family_abroad = $_POST["family_abroad"];
-                                                    $fam_country = $_POST["fam_country"];
+                                                    $website = $_POST["website"];
 
-                                                    $sql = "
-                                                    UPDATE `applicants` SET
-                                                    `first_name` = '$fname', 
-                                                    `middle_name` = '$mname',
-                                                    `surname` = '$lname',
-                                                     `date_of_birth` = '$dob',
-                                                     `country_of_birth` = '$country',
-                                                     `state_of_origin` = '$state',
-                                                     `email` = '$email',
-                                                     `marital_status` = '$marital',
-                                                     `number_of_children` = '$no_of_child',
-                                                     `traveling_with_family` = '$trav_with_fam',
-                                                     `oldest_child_age` = '$first_child_age',
-                                                     `desired_course_abroad` = '$course_choice',
-                                                     `first_degree_course` = '$first_deg',
-                                                     `sponsor_name` = '$sponsor',
-                                                     `preferred_travel_date` = '$travel_date',
-                                                     `visa_refusals` = '$visa_refusal',
-                                                     `visa_held` = '$visa_held',
-                                                     `overstayed_any_country` = '$overstayed',
-                                                     `has_family_abroad` = '$family_abroad',
-                                                     `family_abroad_country` = '$fam_country'
-                                                    WHERE `applicant_id` = '$agentInfo_id'
-                                                    ";
+                                                    if (mysqli_num_rows($getCompanyInfo) > 0) {
+                                                        $sql = "
+                                                        UPDATE `companies` SET
+                                                        `company_name` = '$name', 
+                                                        `office_address` = '$addr',
+                                                        `country` = '$country',
+                                                        `phone` = '$phone',
+                                                        `email` = '$email',
+                                                        `website` = '$website'
+                                                        WHERE `agent_id` = '$agent_id'
+                                                        ";
+                                                    } else {
+                                                        $sql = "
+                                                        INSERT INTO `companies`(`agent_id`,`company_name`, `office_address`, `country`, `phone`, `email`, `website`) 
+                                                        VALUES ('$agent_id', '$name', '$addr', '$country', '$phone', '$email', '$website')
+                                                        ";
+                                                    }
+
+
 
                                                     $insert = mysqli_query($conn, $sql);
                                                     if ($insert) {
-                                                        echo "<script>alert('Application Updated Successfully!'); location.href='applicants.php'</script>";
+                                                        echo "<script>alert('Company Updated Successfully!'); location.href='profile.php'</script>";
                                                     } else {
-                                                        echo "<script>alert('Failed to add Applicant')</script>";
+                                                        echo "<script>alert('Failed to update Company')</script>";
                                                     }
                                                 }
                                                 ?>

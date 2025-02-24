@@ -10,6 +10,11 @@ if (!isset($_SESSION['sr_agent'])) {
 
 $getAgentInfo = $conn->query("SELECT * FROM users WHERE userid = '$agent_id'");
 $agentInfo = $getAgentInfo->fetch_assoc();
+
+$getCompanyInfo = $conn->query("SELECT * FROM `companies` WHERE `agent_id` = '$agent_id'");
+if (mysqli_num_rows($getCompanyInfo) < 1) {
+    echo "<script>location.href = 'profile.php';alert('Fill in your company information!')</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -184,7 +189,7 @@ $agentInfo = $getAgentInfo->fetch_assoc();
                                             <div class="col-md-6">
                                                 <div class="">
                                                     <label for="visa_refusal" class="form-label">Do you have any visa refusals of any country</label>
-                                                    <select name="visa_refusal" id="visa_refusal" class="form-control form-select" >
+                                                    <select name="visa_refusal" id="visa_refusal" class="form-control form-select">
                                                         <option>No</option>
                                                         <option>Yes</option>
                                                     </select>
@@ -193,7 +198,7 @@ $agentInfo = $getAgentInfo->fetch_assoc();
                                             <div class="col-md-6">
                                                 <div class="">
                                                     <label for="visa_held" class="form-label">Do you have visa to any country</label>
-                                                    <select name="visa_held" id="visa_held" class="form-control form-select" >
+                                                    <select name="visa_held" id="visa_held" class="form-control form-select">
                                                         <option>No</option>
                                                         <option>Yes</option>
                                                     </select>
@@ -202,7 +207,7 @@ $agentInfo = $getAgentInfo->fetch_assoc();
                                             <div class="col-md-6">
                                                 <div class="">
                                                     <label for="overstayed" class="form-label">Have you overstayed in any country</label>
-                                                    <select name="overstayed" id="overstayed" class="form-control form-select" >
+                                                    <select name="overstayed" id="overstayed" class="form-control form-select">
                                                         <option>No</option>
                                                         <option>Yes</option>
                                                     </select>
@@ -211,7 +216,7 @@ $agentInfo = $getAgentInfo->fetch_assoc();
                                             <div class="col-md-6">
                                                 <div class="">
                                                     <label for="family_abroad" class="form-label">Do you have any family member abroad</label>
-                                                    <select name="family_abroad" id="family_abroad" class="form-control form-select" >
+                                                    <select name="family_abroad" id="family_abroad" class="form-control form-select">
                                                         <option>No</option>
                                                         <option>Yes</option>
                                                     </select>
@@ -220,7 +225,7 @@ $agentInfo = $getAgentInfo->fetch_assoc();
                                             <div class="col-md-6">
                                                 <div class="">
                                                     <label for="fam_country" class="form-label">What country does your family abroad live in</label>
-                                                    <input type="text" class="form-control" id="fam_country" name="fam_country" >
+                                                    <input type="text" class="form-control" id="fam_country" name="fam_country">
                                                 </div>
                                             </div>
                                             <div class="">
