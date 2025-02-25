@@ -214,45 +214,6 @@ $applicantsAP = $getApprovedApplicants->num_rows;
                             }
                         }
                         ?>
-
-                        <div class="col-12">
-                            <div class="table-responsive mt-4">
-                                <table class="table table-borderless table-striped table-hover align-middle">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">S/N</th>
-                                            <th scope="col">Bank</th>
-                                            <th scope="col">Account Name</th>
-                                            <th scope="col">Account Number</th>
-                                            <th scope="col">Amount</th>
-                                            <th scope="col">Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $getWithdrawals = $conn->query("SELECT * FROM withdrawals WHERE agent_id = '$agent_id' ORDER BY `id` DESC");
-                                        $sn = 1;
-                                        while ($withdrawal = $getWithdrawals->fetch_assoc()) {
-                                        ?>
-                                            <tr>
-                                                <td><?= $sn ?></td>
-                                                <td><?= $withdrawal["bank"] ?></td>
-                                                <td><?= $withdrawal["acct_name"] ?></td>
-                                                <td><?= $withdrawal["acct_num"] ?></td>
-                                                <td>₦<?= $withdrawal["amount"] ?></td>
-                                                <td><?= $withdrawal["date"] ?></td>
-                                            </tr>
-                                        <?php
-                                            $sn++;
-                                        }
-                                        if (mysqli_num_rows($getWithdrawals) < 1) {
-                                            echo "<tr><td colspan='6' class='text-center'>No Withdrawals Yet!</td></tr>";
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
