@@ -2,23 +2,16 @@
 session_start();
 include "../config/config.php";
 
-if (!isset($_SESSION['sr_agent'])) {
-    echo "<script>location.href = '../login.php';</script>";
-} else {
-    $agent_id = $_SESSION['sr_agent'];
+if (!isset($_SESSION['sr_admin'])) {
+    echo "<script>location.href = 'login.php';</script>";
 }
 
-$getAgentInfo = $conn->query("SELECT * FROM `users` WHERE userid = '$agent_id'");
-$agentInfo = $getAgentInfo->fetch_assoc();
 
-$getCompanyInfo = $conn->query("SELECT * FROM `companies` WHERE `agent_id` = '$agent_id'");
-if (mysqli_num_rows($getCompanyInfo) < 1) {
-    echo "<script>location.href = 'profile.php';alert('Fill in your company information!')</script>";
-}
-$company = $getCompanyInfo->fetch_assoc();
-
-$getApprovedApplicants = $conn->query("SELECT * FROM applicants WHERE agent_id = '$agent_id' AND status = 'approved'");
+$getApprovedApplicants = $conn->query("SELECT * FROM applicants WHERE `status` = 'approved'");
 $applicantsAP = $getApprovedApplicants->num_rows;
+
+$getWithdrawals = $conn->query("SELECT w.*, u.firstname, u.lastname FROM `withdrawals` as w JOIN `users` as u ON w.agent_id = u.userid ORDER BY w.id DESC");
+
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -42,10 +35,14 @@ $applicantsAP = $getApprovedApplicants->num_rows;
     <link rel="stylesheet" href="assets/css/quill.snow.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <script src="assets/js/jquery-3.6.min.js"></script>
+    <script src="assets/js/datatables.min.js"></script>
+    <link rel="stylesheet" href="assets/css/datatables.min.css">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Title -->
-    <title>Sergrade Agent Dashboard</title>
+    <title>Sergrade Admin || Bonus Withdrawal</title>
 </head>
 
 <body>
@@ -82,25 +79,8 @@ $applicantsAP = $getApprovedApplicants->num_rows;
             <!-- Start Body Content Area -->
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6">
-                            <div class="stats-box card shadow-sm bg-white border-0 rounded-10 mb-4">
-                                <div class="card-body p-4">
-                                    <div class="d-flex justify-content-between align-items-center pb-1">
-                                        <div class="flex-grow-1 me-3">
-                                            <h3 class="body-font fw-bold fs-3 mb-2">₦<?= $company["bal"] ?? 0 ?></h3>
-                                            <span>Bonus</span>
-                                        </div>
-                                        <div class="flex-shrink-0">
-                                            <div class="icon transition">
-                                                <i class="flaticon-donut-chart"></i>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div class="row">
 
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-md-6">
                             <div class="stats-box card shadow-sm bg-white border-0 rounded-10 mb-4">
                                 <div class="card-body p-4">
@@ -119,102 +99,62 @@ $applicantsAP = $getApprovedApplicants->num_rows;
                                 </div>
                             </div>
                         </div>
-                        <marquee direction="left">
-                            <p class="mb-2">
-                                For every approved applicant, you get a bonus of 5,000.
-                            </p>
-                        </marquee>
                         <!-- <form method="post">
                             <button type="submit" name="withdraw" class="btn btn-primary">Withdraw</button>
                         </form> -->
 
                         <!-- Button trigger modal -->
-                        <div class="">
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modalId">
-                                Withdraw Bonus
-                            </button>
-                        </div>
+
 
 
                         <!-- Modal -->
-                        <div
-                            class="modal fade"
-                            id="modalId"
-                            tabindex="-1"
-                            role="dialog"
-                            aria-labelledby="modalTitleId"
-                            aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modalTitleId">
-                                            Withdrawal
-                                        </h5>
-                                        <button
-                                            type="button"
-                                            class="btn-close"
-                                            data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form method="post">
-                                            <p>You are about to withdraw your bonus of <b>₦<?= $company["bal"] ?></b></p>
-                                            <input type="text" name="bank" placeholder="Bank Name" class="form-control mb-3">
-                                            <input type="text" name="acct_name" placeholder="Account Name" class="form-control mb-3">
-                                            <input type="text" name="acct_num" placeholder="Account Number" class="form-control mb-3">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" name="withdraw" class="btn btn-primary">Withdraw</button>
-                                        </form>
-                                        <button
-                                            type="button"
-                                            class="btn btn-secondary"
-                                            data-bs-dismiss="modal">
-                                            Close
-                                        </button>
-                                    </div>
-                                </div>
+
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card shadow-sm border-0 rounded-10">
+
+                        <div class="card-body p-4">
+                            <h4 class="mb-3">Withdrawals</h4>
+                            <div class="table-responsive">
+                                <table id="tablee" class="w-100 mt-4 table table-striped table-bordered table-hover">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th class="text-uppercase text-nowrap"><small>Full Name</small></th>
+                                            <th class="text-uppercase text-nowrap"><small>Bank</small></th>
+                                            <th class="text-uppercase text-nowrap"><small>Account Name</small></th>
+                                            <th class="text-uppercase text-nowrap"><small>Account Number</small></th>
+                                            <th class="text-uppercase text-nowrap"><small>Amount</small></th>
+                                            <th class="text-uppercase text-nowrap"><small>Status</small></th>
+                                            <th class="text-uppercase text-nowrap"><small>Action</small></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $sn = 1;
+                                        while ($row = $getWithdrawals->fetch_assoc()) {
+                                        ?>
+                                            <tr>
+                                                <td><?= $row['firstname'] . " " . $row['lastname'] ?></td>
+                                                <td><?= $row['bank'] ?></td>
+                                                <td><?= $row['acct_name'] ?></td>
+                                                <td><?= $row['acct_num'] ?></td>
+                                                <td><?= $row['amount'] ?></td>
+                                                <td class="<?= $row['status'] == "confirmed" ? 'text-success' : 'text-warning' ?>"><?= $row['status'] ?></td>
+                                                <td>
+                                                    <a href="confirm-withdrawal.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm <?= $row['status'] == "confirmed" ? 'disabled' : '' ?>">Confirm</a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-
-                        <script>
-                            var modalId = document.getElementById('modalId');
-
-                            modalId.addEventListener('show.bs.modal', function(event) {
-                                // Button that triggered the modal
-                                let button = event.relatedTarget;
-                                // Extract info from data-bs-* attributes
-                                let recipient = button.getAttribute('data-bs-whatever');
-
-                                // Use above variables to manipulate the DOM
-                            });
-                        </script>
-                        <?php
-                        if (isset($_POST['withdraw'])) {
-                            $bank = $_POST['bank'];
-                            $acct_name = $_POST['acct_name'];
-                            $acct_num = $_POST['acct_num'];
-                            $bal = $company["bal"];
-
-                            if ($bal < 1) {
-                                echo "<script>alert('You do not have any bonus to withdraw!')</script>";
-                            } else {
-                                $withdraw = $conn->query("INSERT INTO withdrawals (agent_id, bank, acct_name, acct_num, amount) VALUES ('$agent_id', '$bank', '$acct_name', '$acct_num', '$bal')");
-
-                                $withdrawal = $conn->query("UPDATE companies SET bal = 0 WHERE agent_id = '$agent_id'");
-                                if ($withdraw && $withdrawal) {
-                                    echo "<script>alert('Withdrawal Successful!')</script>";
-                                } else {
-                                    echo "<script>alert('Withdrawal Failed!')</script>";
-                                }
-                            }
-                        }
-                        ?>
                     </div>
+
                 </div>
             </div>
 
@@ -236,6 +176,13 @@ $applicantsAP = $getApprovedApplicants->num_rows;
     <!-- End Theme Setting Area -->
 
     <!-- Link Of JS File -->
+    <script>
+        $(document).ready(function() {
+            $('#tablee').DataTable({
+                "scrollX": "auto",
+            });
+        });
+    </script>
     <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/sidebar-menu.js"></script>

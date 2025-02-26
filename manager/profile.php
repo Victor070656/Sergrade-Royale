@@ -2,19 +2,15 @@
 session_start();
 include "../config/config.php";
 
-if (!isset($_SESSION['sr_agent'])) {
-    echo "<script>location.href = '../login.php';</script>";
-} else {
-    $agent_id = $_SESSION['sr_agent'];
+if (!isset($_SESSION['sr_admin'])) {
+    echo "<script>location.href = 'login.php';</script>";
 }
 
 
 
-$getAgentInfo = $conn->query("SELECT * FROM users WHERE userid = '$agent_id'");
-$agentInfo = $getAgentInfo->fetch_assoc();
+$getAdminInfo = $conn->query("SELECT * FROM `admin`");
+$adminInfo = $getAdminInfo->fetch_assoc();
 
-$getCompanyInfo = $conn->query("SELECT * FROM `companies` WHERE `agent_id` = '$agent_id'");
-$companyInfo = $getCompanyInfo->fetch_assoc();
 
 
 
@@ -87,7 +83,7 @@ $companyInfo = $getCompanyInfo->fetch_assoc();
                                 <div class="card-body px-4 py-5">
                                     <div class="row">
 
-                                        <div class="col-md-6">
+                                        <div class="col-12">
                                             <form method="post">
                                                 <div class="text-center mb-4">
                                                     <h5 class="fw-bold">
@@ -95,35 +91,17 @@ $companyInfo = $getCompanyInfo->fetch_assoc();
                                                     </h5>
                                                 </div>
                                                 <div class="row row-gap-3">
-                                                    <div class="">
-                                                        <div class="">
-                                                            <label for="fname" class="form-label">First name</label> <span class="text-danger">*</span>
-                                                            <input type="text" class="form-control" id="fname" value="<?= $agentInfo['firstname'] ?>" name="fname" required>
-                                                        </div>
-                                                    </div>
 
-                                                    <div class="">
-                                                        <div class="">
-                                                            <label for="lname" class="form-label">Last name</label> <span class="text-danger">*</span>
-                                                            <input type="text" class="form-control" id="lname" value="<?= $agentInfo['lastname'] ?>" name="lname" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="">
-                                                        <div class="">
-                                                            <label for="phone" class="form-label">Mobile Number</label>
-                                                            <input type="tel" class="form-control" id="phone" value="<?= $agentInfo['phone'] ?>" name="phone">
-                                                        </div>
-                                                    </div>
-                                                    <div class="">
+                                                    <div class="col-md-6">
                                                         <div class="">
                                                             <label for="email" class="form-label">Email Address</label> <span class="text-danger">*</span>
-                                                            <input type="email" class="form-control" id="email" value="<?= $agentInfo['email'] ?>" name="email" required>
+                                                            <input type="email" class="form-control" id="email" value="<?= $adminInfo['email'] ?>" name="email" required>
                                                         </div>
                                                     </div>
-                                                    <div class="">
+                                                    <div class="col-md-6">
                                                         <div class="">
                                                             <label for="password" class="form-label">password</label> <span class="text-danger">*</span>
-                                                            <input type="password" class="form-control" id="password" value="<?= $agentInfo['password'] ?>" name="password" required>
+                                                            <input type="text" class="form-control" id="password" value="<?= $adminInfo['password'] ?>" name="password" required>
                                                         </div>
                                                     </div>
 
@@ -133,118 +111,16 @@ $companyInfo = $getCompanyInfo->fetch_assoc();
                                                 </div>
                                                 <?php
                                                 if (isset($_POST["add"])) {
-                                                    // $applicationid = uniqid();
-                                                    $fname = $_POST["fname"];
-                                                    $lname = $_POST["lname"];
-                                                    $phone = $_POST["phone"];
                                                     $email = $_POST["email"];
                                                     $password = $_POST["password"];
 
-                                                    $sql = "
-                                                    UPDATE `users` SET
-                                                    `firstname` = '$fname', 
-                                                    `lastname` = '$lname',
-                                                    `phone` = '$phone',
-                                                    `email` = '$email',
-                                                    `password` = '$password'
-                                                    WHERE `userid` = '$agent_id'
-                                                    ";
+                                                    $sql = "UPDATE `admin` SET `email` = '$email', `password` = '$password'";
 
                                                     $insert = mysqli_query($conn, $sql);
                                                     if ($insert) {
                                                         echo "<script>alert('Profile Updated Successfully!'); location.href='profile.php'</script>";
                                                     } else {
                                                         echo "<script>alert('Failed to update Profile')</script>";
-                                                    }
-                                                }
-                                                ?>
-                                            </form>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <form method="post">
-                                                <div class="text-center mb-4">
-                                                    <h5 class="fw-bold">
-                                                        Company Info
-                                                    </h5>
-                                                </div>
-                                                <div class="row row-gap-3">
-                                                    <div class="">
-                                                        <div class="">
-                                                            <label for="name" class="form-label">Company Name</label> <span class="text-danger">*</span>
-                                                            <input type="text" class="form-control" id="name" value="<?= $companyInfo['company_name'] ?? "" ?>" name="name" required>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="">
-                                                        <div class="">
-                                                            <label for="addr" class="form-label">Company Address</label> <span class="text-danger">*</span>
-                                                            <input type="text" class="form-control" id="addr" value="<?= $companyInfo['office_address'] ?? "" ?>" name="addr" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="">
-                                                        <div class="">
-                                                            <label for="country" class="form-label">Country</label> <span class="text-danger">*</span>
-                                                            <input type="text" class="form-control" id="country" value="<?= $companyInfo['country'] ?? "" ?>" name="country" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="">
-                                                        <div class="">
-                                                            <label for="phone" class="form-label">Mobile Number</label> <span class="text-danger">*</span>
-                                                            <input type="tel" class="form-control" id="phone" value="<?= $companyInfo['phone'] ?? "" ?>" name="phone" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="">
-                                                        <div class="">
-                                                            <label for="email" class="form-label">Email Address</label> <span class="text-danger">*</span>
-                                                            <input type="email" class="form-control" id="email" value="<?= $companyInfo['email'] ?? "" ?>" name="email" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="">
-                                                        <div class="">
-                                                            <label for="website" class="form-label">Website</label> <span class="text-danger">*</span>
-                                                            <input type="url" class="form-control" id="website" value="<?= $companyInfo['website'] ?? "" ?>" name="website" required>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="">
-                                                        <button type="submit" name="update" class="btn btn-dark">UPDATE COMPANY</button>
-                                                    </div>
-                                                </div>
-                                                <?php
-                                                if (isset($_POST["update"])) {
-                                                    // $applicationid = uniqid();
-                                                    $name = $_POST["name"];
-                                                    $addr = $_POST["addr"];
-                                                    $country = $_POST["country"];
-                                                    $phone = $_POST["phone"];
-                                                    $email = $_POST["email"];
-                                                    $website = $_POST["website"];
-
-                                                    if (mysqli_num_rows($getCompanyInfo) > 0) {
-                                                        $sql = "
-                                                        UPDATE `companies` SET
-                                                        `company_name` = '$name', 
-                                                        `office_address` = '$addr',
-                                                        `country` = '$country',
-                                                        `phone` = '$phone',
-                                                        `email` = '$email',
-                                                        `website` = '$website'
-                                                        WHERE `agent_id` = '$agent_id'
-                                                        ";
-                                                    } else {
-                                                        $sql = "
-                                                        INSERT INTO `companies`(`agent_id`,`company_name`, `office_address`, `country`, `phone`, `email`, `website`) 
-                                                        VALUES ('$agent_id', '$name', '$addr', '$country', '$phone', '$email', '$website')
-                                                        ";
-                                                    }
-
-
-
-                                                    $insert = mysqli_query($conn, $sql);
-                                                    if ($insert) {
-                                                        echo "<script>alert('Company Updated Successfully!'); location.href='profile.php'</script>";
-                                                    } else {
-                                                        echo "<script>alert('Failed to update Company')</script>";
                                                     }
                                                 }
                                                 ?>

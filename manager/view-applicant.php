@@ -45,7 +45,7 @@ $applicant = $getApplicant->fetch_assoc();
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Title -->
-    <title>Sergrade Agent Dashboard</title>
+    <title>Sergrade Admin || View Application</title>
 </head>
 
 <body>
@@ -91,6 +91,22 @@ $applicant = $getApplicant->fetch_assoc();
                                             <h3 class="fw-bold">
                                                 Application #<?= $applicant['applicant_id'] ?>
                                             </h3>
+                                            <span>
+                                                <b>Status:</b>
+                                                <span class="
+                                                <?php
+                                                if ($applicant['status'] == "pending") {
+                                                    echo "text-warning";
+                                                } elseif ($applicant['status'] == "approved") {
+                                                    echo "text-success";
+                                                } elseif ($applicant['status'] == "rejected") {
+                                                    echo "text-danger";
+                                                }
+                                                ?>
+                                                ">
+                                                    <?= ucfirst($applicant['status']) ?>
+                                                </span>
+                                            </span>
                                         </div>
                                         <div class="row row-gap-3">
                                             <div class="col-md-6">

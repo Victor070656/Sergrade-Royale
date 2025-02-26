@@ -45,7 +45,7 @@ $applicantsAP = $getApprovedApplicants->num_rows;
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Title -->
-    <title>Sergrade Agent Dashboard</title>
+    <title>Sergrade Agent || Bonus</title>
 </head>
 
 <body>
@@ -240,7 +240,7 @@ $applicantsAP = $getApprovedApplicants->num_rows;
                                                 <td><?= $withdrawal["acct_name"] ?></td>
                                                 <td><?= $withdrawal["acct_num"] ?></td>
                                                 <td>₦<?= $withdrawal["amount"] ?></td>
-                                                <td><?= $withdrawal["date"] ?></td>
+                                                <td><?= $withdrawal["created_at"] ?></td>
                                             </tr>
                                         <?php
                                             $sn++;

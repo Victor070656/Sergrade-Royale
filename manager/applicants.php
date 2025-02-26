@@ -9,7 +9,7 @@ if (!isset($_SESSION['sr_admin'])) {
 $getApplications = $conn->query("SELECT * FROM `users`");
 $applications = $getApplications->fetch_assoc();
 
-$getAllApplicants = $conn->query("SELECT * FROM `applicants`");
+$getAllApplicants = $conn->query("SELECT a.*, u.firstname, u.lastname FROM `applicants` as a LEFT JOIN `users` as u ON a.agent_id = u.userid");
 $applicantsA = $getAllApplicants->num_rows;
 
 ?>
@@ -36,15 +36,15 @@ $applicantsA = $getAllApplicants->num_rows;
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- <link rel="stylesheet" href="assets/css/datatables.min.css"> -->
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="assets/js/jquery-3.6.min.js"></script>
+    <script src="assets/js/datatables.min.js"></script>
+    <link rel="stylesheet" href="assets/css/datatables.min.css">
 
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Title -->
-    <title>Sergrade Agent Dashboard</title>
+    <title>Sergrade Admin || Applicants</title>
 </head>
 
 <body>
@@ -96,6 +96,7 @@ $applicantsA = $getAllApplicants->num_rows;
                                                     <th>Middle Name</th>
                                                     <th>Last Name</th>
                                                     <th>D.O.B</th>
+                                                    <th>Agent</th>
                                                     <th>Country</th>
                                                     <th>State</th>
                                                     <th>Email</th>
@@ -119,6 +120,7 @@ $applicantsA = $getAllApplicants->num_rows;
                                                         <td><?= $applicant['middle_name'] ?></td>
                                                         <td><?= $applicant['surname'] ?></td>
                                                         <td><?= $applicant['date_of_birth'] ?></td>
+                                                        <td><?= $applicant['firstname'] . " " . $applicant['lastname'] ?></td>
                                                         <td><?= $applicant['country_of_birth'] ?></td>
                                                         <td><?= $applicant['state_of_origin'] ?></td>
                                                         <td><?= $applicant['email'] ?></td>

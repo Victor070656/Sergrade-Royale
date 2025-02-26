@@ -49,7 +49,7 @@ $applicant = $getApplicant->fetch_assoc();
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Title -->
-    <title>Sergrade Agent Dashboard</title>
+    <title>Sergrade Agent || View Applications</title>
 </head>
 
 <body>

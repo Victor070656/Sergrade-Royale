@@ -41,7 +41,7 @@ if (mysqli_num_rows($getCompanyInfo) < 1) {
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Title -->
-    <title>Sergrade Agent Dashboard</title>
+    <title>Sergrade Agent || Add Applicant</title>
 </head>
 
 <body>

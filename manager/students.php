@@ -6,8 +6,7 @@ if (!isset($_SESSION['sr_admin'])) {
     echo "<script>location.href = 'login.php';</script>";
 }
 
-$getApplications = $conn->query("SELECT * FROM `users`");
-$applications = $getApplications->fetch_assoc();
+$getStudents = $conn->query("SELECT * FROM `users`  WHERE `account_type` = 'student'");
 
 ?>
 <!DOCTYPE html>
@@ -32,10 +31,14 @@ $applications = $getApplications->fetch_assoc();
     <link rel="stylesheet" href="assets/css/quill.snow.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <script src="assets/js/jquery-3.6.min.js"></script>
+    <script src="assets/js/datatables.min.js"></script>
+    <link rel="stylesheet" href="assets/css/datatables.min.css">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Title -->
-    <title>Sergrade Agent Dashboard</title>
+    <title>Sergrade Admin || Students</title>
 </head>
 
 <body>
@@ -71,68 +74,44 @@ $applications = $getApplications->fetch_assoc();
 
             <!-- Start Body Content Area -->
             <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            <div class="stats-box card shadow-sm bg-white border-0 rounded-10 mb-4">
-                                <div class="card-body p-4">
-                                    <div class="">
-                                        <h3 class="fw-bold">Applicants</h3>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-borderless table-striped">
-                                            <thead>
-                                                <tr class="text-nowrap">
-                                                    <th>First Name</th>
-                                                    <th>Middle Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>D.O.B</th>
-                                                    <th>Country</th>
-                                                    <th>State</th>
-                                                    <th>Email</th>
-                                                    <th>Marital Status</th>
-                                                    <th>Desired Course</th>
-                                                    <th>Desired Travel date</th>
-                                                    <th>Status</th>
-                                                    <th>Creation Date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                if ($getAllApplicants->num_rows == 0) {
-                                                    echo "<tr><td colspan='13' class='text-center'>No Applicants Yet</td></tr>";
-                                                }
-                                                while ($applicant = $getAllApplicants->fetch_assoc()) {
-                                                ?>
-                                                    <tr>
-                                                        <td><?= $applicant['first_name'] ?></td>
-                                                        <td><?= $applicant['middle_name'] ?></td>
-                                                        <td><?= $applicant['surname'] ?></td>
-                                                        <td><?= $applicant['date_of_birth'] ?></td>
-                                                        <td><?= $applicant['country_of_birth'] ?></td>
-                                                        <td><?= $applicant['state_of_origin'] ?></td>
-                                                        <td><?= $applicant['email'] ?></td>
-                                                        <td><?= $applicant['marital_status'] ?></td>
-                                                        <td><?= $applicant['desired_course_abroad'] ?></td>
-                                                        <td><?= $applicant['preferred_travel_date'] ?></td>
-                                                        <td><?= $applicant['status'] ?></td>
-                                                        <td><?= $applicant['created_at'] ?></td>
-                                                        <td>
-                                                            <a href="view-applicant.php?id=<?= $applicant['applicant_id'] ?>" class="btn btn-primary">View</a>
-                                                        </td>
-                                                    </tr>
-                                                <?php
-                                                }
-                                                ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
 
-                                </div>
+                <div class="col-12">
+                    <div class="card shadow-sm bg-white border-0 rounded-10">
+
+                        <div class="card-body  p-4">
+                            <h4 class="mb-3">Students</h4>
+                            <div class="table-responsive">
+                                <table id="tablee" class="w-100 mt-4 table table-bordered mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="col text-muted text-nowrap text-uppercase text-center"><small>First Name</small></th>
+                                            <th class="col text-muted text-nowrap text-uppercase text-center"><small>Last Name</small></th>
+                                            <th class="col text-muted text-nowrap text-uppercase text-center"><small>Phone Number</small></th>
+                                            <th class="col text-muted text-nowrap text-uppercase text-center"><small>Email</small></th>
+                                            <th class="col text-muted text-nowrap text-uppercase text-center"><small>Joined On</small></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        while ($row = $getStudents->fetch_assoc()) {
+                                        ?>
+                                            <tr>
+                                                <td class="text-center"><?= $row['firstname'] ?></td>
+                                                <td class="text-center"><?= $row['lastname'] ?></td>
+                                                <td class="text-center"><?= $row['phone'] ?></td>
+                                                <td class="text-center"><?= $row['email'] ?></td>
+                                                <td class="text-center"><small><?= $row['created_at'] ?></small></td>
+                                            </tr>
+                                        <?php
+                                        }
+
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -154,6 +133,13 @@ $applications = $getApplications->fetch_assoc();
     <!-- End Theme Setting Area -->
 
     <!-- Link Of JS File -->
+    <script>
+        $(document).ready(function() {
+            $('#tablee').DataTable({
+                "scrollX": "100%",
+            });
+        });
+    </script>
     <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/sidebar-menu.js"></script>

@@ -37,6 +37,18 @@
                     <span class="title">Bonus Withdrawals</span>
                 </a>
             </li>
+            <li class="menu-item">
+                <a href="agents.php" class="menu-link ">
+                    <i data-feather="user" class="menu-icon tf-icons"></i>
+                    <span class="title">Agents</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="students.php" class="menu-link ">
+                    <i data-feather="user" class="menu-icon tf-icons"></i>
+                    <span class="title">Students</span>
+                </a>
+            </li>
 
             <!-- <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">

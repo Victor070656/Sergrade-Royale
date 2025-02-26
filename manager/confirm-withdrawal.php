@@ -8,26 +8,20 @@ if (!isset($_SESSION['sr_admin'])) {
 
 
 if (!isset($_GET["id"])) {
-    echo "<script>location.href = 'applicants.php';</script>";
+    echo "<script>location.href = 'bonus.php';</script>";
     exit;
 }
-$applicant_id = $_GET["id"];
+$withdrawal_id = $_GET["id"];
 
 // $getAgentInfo = $conn->query("SELECT * FROM users WHERE userid = '$agent_id'");
 // $agentInfo = $getAgentInfo->fetch_assoc();
 
-$getApplicant = $conn->query("SELECT * FROM `applicants` WHERE `applicant_id` = '$applicant_id'");
-if ($getApplicant->num_rows < 1) {
-    echo "<script>location.href = 'applicants.php';</script>";
+$getWithdrawal = $conn->query("SELECT * FROM `withdrawals` WHERE `id` = '$withdrawal_id'");
+if ($getWithdrawal->num_rows < 1) {
+    echo "<script>location.href = 'bonus.php';</script>";
 }
-$applicant = $getApplicant->fetch_assoc();
+$withdrawal = $getWithdrawal->fetch_assoc();
 
-if ($applicant["status"] == "approved") {
-    echo "<script>location.href = 'applicants.php';</script>";
-}
-
-$agent_id = $applicant["agent_id"];
-$getAgentInfo = $conn->query("SELECT * FROM users WHERE `userid` = '$agent_id'");
 
 ?>
 <!DOCTYPE html>
@@ -55,7 +49,7 @@ $getAgentInfo = $conn->query("SELECT * FROM users WHERE `userid` = '$agent_id'")
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Title -->
-    <title>Sergrade Admin || Approve Applicant</title>
+    <title>Sergrade Admin || Confirm Withdrawal</title>
 </head>
 
 <body>
@@ -95,25 +89,17 @@ $getAgentInfo = $conn->query("SELECT * FROM users WHERE `userid` = '$agent_id'")
                     <div class="card bg-white border-0 shadow-sm p-4">
                         <div class="text-center py-5">
                             <img src="assets/images/done.png" style="width: 80px;" alt="">
-                            <h4>Approve Applicant</h4>
-                            <p>Are you sure you want to approve this applicant? it cannot be undone</p>
+                            <h4>Confirm Withdrawal</h4>
+                            <p>Are you sure you want to Confirm this Withdrawal of ₦<?= $withdrawal["amount"] ?>? it cannot be undone</p>
 
                             <form method="post">
                                 <button type="submit" name="send" class="btn btn-success">Approve</button>
                             </form>
                             <?php
                             if (isset($_POST["send"])) {
-                                $update = mysqli_query($conn, "UPDATE `applicants` SET `status` = 'approved' WHERE `applicant_id` = '$applicant_id'");
-
+                                $update = mysqli_query($conn, "UPDATE `withdrawals` SET `status` = 'confirmed' WHERE `id` = '$withdrawal_id'");
                                 if ($update) {
-                                    if ($getAgentInfo->num_rows > 0) {
-                                        $getCompanyInfo = $conn->query("SELECT * FROM `companies` WHERE `agent_id` = '$agent_id'");
-                                        $companyInfo = $getCompanyInfo->fetch_assoc();
-                                        $bal = $companyInfo["bal"];
-                                        $newBal = $bal + 5000;
-                                        $updateBal = mysqli_query($conn, "UPDATE `companies` SET `bal` = '$newBal' WHERE `agent_id` = '$agent_id'");
-                                    }
-                                    echo "<script>alert('Application Approved!'); location.href='applicants.php'</script>";
+                                    echo "<script>alert('Withdrawal Confirmed!'); location.href='bonus.php'</script>";
                                 }
                             }
                             ?>

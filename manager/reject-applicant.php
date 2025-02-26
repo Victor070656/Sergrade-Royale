@@ -51,7 +51,7 @@ if ($applicant["status"] == "rejected") {
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Title -->
-    <title>Sergrade Agent Dashboard</title>
+    <title>Sergrade Admin || Reject Applicant</title>
 </head>
 
 <body>

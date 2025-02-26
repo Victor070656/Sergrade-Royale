@@ -48,7 +48,7 @@ $applicantsAP = $getApprovedApplicants->num_rows;
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Title -->
-    <title>Sergrade Agent Dashboard</title>
+    <title>Sergrade Agent || Dashboard</title>
 </head>
 
 <body>
