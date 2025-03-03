@@ -29,6 +29,11 @@ if ($applicant["status"] == "approved") {
 $agent_id = $applicant["agent_id"];
 $getAgentInfo = $conn->query("SELECT * FROM users WHERE `userid` = '$agent_id'");
 
+$getBonusAmount = mysqli_query($conn, "SELECT * FROM `bonus_amount`");
+$bonusAmount = $getBonusAmount->fetch_assoc();
+$bonus = $bonusAmount["amount"];
+
+
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -53,7 +58,7 @@ $getAgentInfo = $conn->query("SELECT * FROM users WHERE `userid` = '$agent_id'")
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="../assets/img/logo.png">
     <!-- Title -->
     <title>Sergrade Admin || Approve Applicant</title>
 </head>
@@ -110,7 +115,7 @@ $getAgentInfo = $conn->query("SELECT * FROM users WHERE `userid` = '$agent_id'")
                                         $getCompanyInfo = $conn->query("SELECT * FROM `companies` WHERE `agent_id` = '$agent_id'");
                                         $companyInfo = $getCompanyInfo->fetch_assoc();
                                         $bal = $companyInfo["bal"];
-                                        $newBal = $bal + 5000;
+                                        $newBal = $bal + $bonus;
                                         $updateBal = mysqli_query($conn, "UPDATE `companies` SET `bal` = '$newBal' WHERE `agent_id` = '$agent_id'");
                                     }
                                     echo "<script>alert('Application Approved!'); location.href='applicants.php'</script>";
@@ -128,7 +133,7 @@ $getAgentInfo = $conn->query("SELECT * FROM users WHERE `userid` = '$agent_id'")
 
             <!-- Start Footer Area -->
             <footer class="footer-area bg-white text-center rounded-top-10">
-                <p class="fs-14">© <span class="text-primary">SERGRADE</span></p>
+                <p class="fs-14">© <span class="text-primary">SERGRADE ROYALE</span></p>
             </footer>
             <!-- End Footer Area -->
         </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 26, 2025 at 07:14 PM
+-- Generation Time: Mar 03, 2025 at 08:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -83,6 +83,24 @@ CREATE TABLE `applicants` (
 INSERT INTO `applicants` (`id`, `applicant_id`, `agent_id`, `student_id`, `first_name`, `middle_name`, `surname`, `date_of_birth`, `country_of_birth`, `state_of_origin`, `email`, `marital_status`, `number_of_children`, `traveling_with_family`, `oldest_child_age`, `desired_course_abroad`, `first_degree_course`, `sponsor_name`, `preferred_travel_date`, `visa_refusals`, `visa_held`, `overstayed_any_country`, `has_family_abroad`, `family_abroad_country`, `status`, `created_at`, `updated_at`) VALUES
 (1, '67b546a98d094', '67b32175da66d', NULL, 'Francesca', 'Patience', 'Robinson', '1983-05-25', 'Sed accusantium qui ', 'Esse fuga Commodo ', 'typyfu@example.com', 'Divorced', 540, 'Yes', 43, 'Qui nihil atque culp', 'Id incididunt beatae', 'Velit quod qui excep', '1976-09-20', 'Yes', 'Yes', 'Yes', 'Yes', 'Illo culpa perferen', 'approved', '2025-02-19 03:49:13', '2025-02-25 11:36:52'),
 (2, '67b87fd9cca04', NULL, '67b8766d4b052', 'Alea', 'Joan', 'Preston', '1982-07-14', 'Nulla tenetur soluta', 'Temporibus in dolor ', 'guducikak@example.com', 'Married', 85, 'Yes', 97, 'Consequatur assumend', 'Fuga Nemo quia qui ', 'Duis eveniet ut off', '1993-08-22', 'No', 'Yes', 'No', 'No', 'Vel possimus dignis', 'rejected', '2025-02-21 14:30:01', '2025-02-25 09:06:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bonus_amount`
+--
+
+CREATE TABLE `bonus_amount` (
+  `id` int(11) NOT NULL,
+  `amount` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bonus_amount`
+--
+
+INSERT INTO `bonus_amount` (`id`, `amount`) VALUES
+(1, 5000);
 
 -- --------------------------------------------------------
 
@@ -178,6 +196,12 @@ ALTER TABLE `applicants`
   ADD UNIQUE KEY `applicantid` (`applicant_id`);
 
 --
+-- Indexes for table `bonus_amount`
+--
+ALTER TABLE `bonus_amount`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `companies`
 --
 ALTER TABLE `companies`
@@ -211,6 +235,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `applicants`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `bonus_amount`
+--
+ALTER TABLE `bonus_amount`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `companies`

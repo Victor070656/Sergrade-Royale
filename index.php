@@ -7,7 +7,7 @@
   <title>SERGRADE Overseas Education - Best Study Abroad Consultants</title>
   <link
     rel="shortcut icon"
-    href="assets/img/svg/kc_favicon.ico"
+    href="assets/img/logo.png"
     type="image/x-icon" />
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
   <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,8 +27,8 @@
   <header class="position-sticky top-0" style="z-index: 100">
     <nav class="navbar navbar-expand-lg bg-primary text-light">
       <div class="container-fluid px-2 px-lg-5">
-        <a class="navbar-brand" href="#">
-          <img src="assets/img/logo1.png" alt="" style="height: 40px" />
+        <a class="navbar-brand" href="./">
+          <h4 class="text-light mb-0"><b>Sergrade Royale</b></h4>
         </a>
         <button
           class="navbar-toggler btn-sm border-0"

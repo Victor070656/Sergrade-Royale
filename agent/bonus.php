@@ -43,7 +43,7 @@ $applicantsAP = $getApprovedApplicants->num_rows;
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="../assets/img/logo.png">
     <!-- Title -->
     <title>Sergrade Agent || Bonus</title>
 </head>
@@ -119,11 +119,11 @@ $applicantsAP = $getApprovedApplicants->num_rows;
                                 </div>
                             </div>
                         </div>
-                        <marquee direction="left">
+                        <!-- <marquee direction="left">
                             <p class="mb-2">
                                 For every approved applicant, you get a bonus of 5,000.
                             </p>
-                        </marquee>
+                        </marquee> -->
                         <!-- <form method="post">
                             <button type="submit" name="withdraw" class="btn btn-primary">Withdraw</button>
                         </form> -->
@@ -215,9 +215,10 @@ $applicantsAP = $getApprovedApplicants->num_rows;
                         }
                         ?>
 
-                        <div class="col-12">
+                        <div class="col-12 mt-5">
+                            <h4 class="mb-4">Withdrawal History</h4>
                             <div class="table-responsive mt-4">
-                                <table class="table table-borderless table-striped table-hover align-middle">
+                                <table class="table table-bordered table-striped table-hover align-middle">
                                     <thead>
                                         <tr>
                                             <th scope="col">S/N</th>
@@ -263,7 +264,7 @@ $applicantsAP = $getApprovedApplicants->num_rows;
 
             <!-- Start Footer Area -->
             <footer class="footer-area bg-white text-center rounded-top-10">
-                <p class="fs-14">© <span class="text-primary">SERGRADE</span></p>
+                <p class="fs-14">© <span class="text-primary">SERGRADE ROYALE</span></p>
             </footer>
             <!-- End Footer Area -->
         </div>

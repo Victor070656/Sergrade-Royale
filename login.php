@@ -11,7 +11,7 @@ include "config/config.php";
   <title>SERGRADE Overseas Education - Best Study Abroad Consultants</title>
   <link
     rel="shortcut icon"
-    href="assets/img/svg/kc_favicon.ico"
+    href="assets/img/logo.png"
     type="image/x-icon" />
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
   <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />

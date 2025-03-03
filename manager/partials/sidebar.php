@@ -1,7 +1,7 @@
 <div class="sidebar-area" id="sidebar-area">
     <div class="logo position-relative">
         <a href="index-2.html" class="d-block text-decoration-none">
-            <img src="assets/images/logo-icon.png" alt="logo-icon">
+            <img src="../assets/img/logo.png" style="height: 40px;" alt="logo-icon">
             <span class="logo-text fw-bold text-dark">Sergrade</span>
         </a>
         <button class="sidebar-burger-menu bg-transparent p-0 border-0 opacity-0 z-n1 position-absolute top-50 end-0 translate-middle-y" id="sidebar-burger-menu">

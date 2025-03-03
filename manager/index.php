@@ -18,6 +18,10 @@ $applicantsR = $getRejectedApplicants->num_rows;
 // 
 $getApprovedApplicants = $conn->query("SELECT * FROM `applicants` WHERE `status` = 'approved'");
 $applicantsAP = $getApprovedApplicants->num_rows;
+
+$getBonusAmount = mysqli_query($conn, "SELECT * FROM `bonus_amount`");
+$bonusAmount = $getBonusAmount->fetch_assoc();
+$bonus = $bonusAmount["amount"];
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -42,7 +46,7 @@ $applicantsAP = $getApprovedApplicants->num_rows;
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="../assets/img/logo.png">
     <!-- Title -->
     <title>Sergrade Admin || Dashboard</title>
 </head>
@@ -170,6 +174,28 @@ $applicantsAP = $getApprovedApplicants->num_rows;
                         </div>
                     </div>
                 </div>
+                <div class="col-12">
+                    <h4 class="">Agent Bonus Amount (₦)</h4>
+                    <form method="post">
+                        <div class="row align-items-center">
+                            <div class="col-md-10">
+                                <input type="text" name="amount" value="<?= $bonus ?? 0; ?>" class="form-control" placeholder="Bonus Amount...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" name="update" class="btn btn-primary btn-lg fs-5 fw-bold w-100">Update</button>
+                            </div>
+                        </div>
+                        <?php
+                        if (isset($_POST["update"])) {
+                            $amount = $_POST["amount"];
+                            $update = mysqli_query($conn, "UPDATE `bonus_amount` SET `amount` = '$amount'");
+                            if ($update) {
+                                echo "<script>alert('Bonus Amount Updated!'); location.href = './'</script>";
+                            }
+                        }
+                        ?>
+                    </form>
+                </div>
             </div>
 
             <!-- End Body Content Area -->
@@ -178,7 +204,7 @@ $applicantsAP = $getApprovedApplicants->num_rows;
 
             <!-- Start Footer Area -->
             <footer class="footer-area bg-white text-center rounded-top-10">
-                <p class="fs-14">© <span class="text-primary">SERGRADE</span></p>
+                <p class="fs-14">© <span class="text-primary">SERGRADE ROYALE</span></p>
             </footer>
             <!-- End Footer Area -->
         </div>
