@@ -292,7 +292,7 @@
                 <small>(For Partners)</small></a>
             </li>
             <li class="nav-item">
-              <a
+              <a href="login.php"
                 class="btn btn-light text-danger main-btn second-btn d-flex align-items-center gap-2"
                 style="font-size: smaller"><i class="bx bxs-video fs-6 m-0"></i>
                 <span>Book Online Counselling</span>
@@ -314,7 +314,7 @@
       <img
         src="assets/img/svg/new-palace.png"
         alt=""
-        style="top: 60px"
+        style="top: 30px"
         class="opacity-25 position-absolute end-0 object-fit-contain z-0" />
       <img
         src="assets/img/svg/abt-bg-star.svg"
@@ -322,8 +322,8 @@
         style="top: 60px"
         class="position-absolute end-0 object-fit-contain" />
       <!-- / bg -->
-      <div class="container h-100 position-relative z-2">
-        <div class="row vh-100 align-items-center">
+      <div class="container min-vh-100  position-relative z-2">
+        <div class="row min-vh-100 align-items-center">
           <div class="col-md-6 order-last order-md-first">
             <h1 class="text-light fw-semibold">
               We are bringing overseas education within everyone’s reach
@@ -332,11 +332,11 @@
               Our Tech-enabled solutions help international students and
               recruitment partners choose the best global universities
             </p>
-            <a href="#" class="btn cta-btn">Start Your Journey</a>
+            <a href="login.php" class="btn cta-btn">Start Your Journey</a>
           </div>
           <div class="col-md-6 order-first order-md-last">
             <img
-              src="assets/img/svg/banner-girl_enhanced.webp"
+              src="assets/img/hero1.png"
               alt=""
               class="img-fluid"
               style="width: 90%; margin: auto" />
@@ -349,10 +349,10 @@
     <!-- strength -->
     <section class="py-5">
       <div class="container py-5">
-        <div class="mb-3">
+        <div class="mb-4">
           <h1 class="text-center fw-bold">Our Core Strengths</h1>
         </div>
-        <div class="row">
+        <div class="row px-3">
           <div class="col-md-4">
             <div class="text-center mb-3">
               <h1 class="fw-bold" style="color: #fdaf4d">850+</h1>
@@ -412,9 +412,9 @@
           </div>
           <div class="col-md-5 order-first order-md-last">
             <img
-              src="assets/img/svg/services1.png"
+              src="assets/img/02.jpg"
               alt=""
-              class="img-fluid mx-auto" />
+              class="img-fluid mx-auto rounded-4 shadow-sm mb-4 mb-md-0 border border-5 border-danger-subtle" />
           </div>
         </div>
       </div>
@@ -426,9 +426,9 @@
         <div class="row">
           <div class="col-md-5">
             <img
-              src="assets/img/svg/services2.png"
+              src="assets/img/03.jpg"
               alt=""
-              class="img-fluid mx-auto" />
+              class="img-fluid mx-auto rounded-4 shadow-sm mb-4 mb-md-0 border border-5 border-warning-subtle" />
           </div>
           <div class="col-md-7">
             <h3 class="fw-semibold">For Partners</h3>
@@ -467,9 +467,9 @@
           </div>
           <div class="col-md-5 order-first order-md-last">
             <img
-              src="assets/img/svg/services3.png"
+              src="assets/img/07.webp"
               alt=""
-              class="img-fluid mx-auto" />
+              class="img-fluid mx-auto rounded-4 shadow-sm mb-4 mb-md-0 border border-5 border-info-subtle" />
           </div>
         </div>
       </div>
@@ -480,9 +480,9 @@
         <div class="row">
           <div class="col-md-5">
             <img
-              src="assets/img/svg/services4.png"
+              src="assets/img/10.jpeg"
               alt=""
-              class="img-fluid mx-auto" />
+              class="img-fluid mx-auto rounded-4 shadow-sm mb-4 mb-md-0 border border-5 border-primary-subtle" />
           </div>
           <div class="col-md-7">
             <h3 class="fw-semibold">For Universities</h3>
@@ -561,7 +561,7 @@
                   2025 Intake.
                 </p>
                 <a
-                  href="#"
+                  href="login.php"
                   class="text-decoration-none"
                   style="color: #ff6b56">Register Now <i class="bx bx-chevron-right"></i></a>
               </div>
@@ -597,7 +597,7 @@
                       High-Ranked
                     </p>
                     <a
-                      href="#"
+                      href="login.php"
                       class="text-decoration-none"
                       style="color: #ff6b56">Register Now <i class="bx bx-chevron-right"></i></a>
                   </div>
@@ -631,7 +631,7 @@
                       Score in GRE
                     </p>
                     <a
-                      href="#"
+                      href="login.php"
                       class="text-decoration-none"
                       style="color: #ff6b56">Register Now <i class="bx bx-chevron-right"></i></a>
                   </div>
@@ -789,7 +789,7 @@
                 learning and growth opportunities and advance your career with
                 us.
               </p>
-              <a href="#" class="btn btn-light text-danger px-4 mb-5">Apply Now</a>
+              <a href="login.php" class="btn btn-light text-danger px-4 mb-5">Apply Now</a>
               <img
                 src="assets/img/svg/kcupdatesline.svg"
                 alt=""
