@@ -355,7 +355,7 @@
         <div class="row px-3">
           <div class="col-md-4">
             <div class="text-center mb-3">
-              <h1 class="fw-bold" style="color: #fdaf4d">850+</h1>
+              <h1 class="fw-bold count" data-target="850" style="color: #fdaf4d">0</h1>
               <p class="fw-semibold">Global University Tie Ups</p>
               <small>
                 Our students aren’t just pursuing their higher education, but
@@ -366,7 +366,7 @@
           </div>
           <div class="col-md-4">
             <div class="text-center mb-3">
-              <h1 class="fw-bold" style="color: #ff6a56">65+</h1>
+              <h1 class="fw-bold count" data-target="65" style="color: #ff6a56">0</h1>
               <p class="fw-semibold">Offices across the Globe</p>
               <small>
                 We’re growing, we’re expanding and we’re doing that fast! Join
@@ -376,7 +376,7 @@
           </div>
           <div class="col-md-4">
             <div class="text-center mb-3">
-              <h1 class="fw-bold" style="color: #226cf5">26</h1>
+              <h1 class="fw-bold count" data-target="26" style="color: #226cf5">0</h1>
               <p class="fw-semibold">Years of Industry Presence</p>
               <small>
                 With over two decades of industry expertise, we know what’s
@@ -387,7 +387,43 @@
         </div>
       </div>
     </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const counters = document.querySelectorAll(".count");
+        const options = {
+          threshold: 1.0
+        };
+
+        const observer = new IntersectionObserver(function(entries, observer) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const target = parseInt(entry.target.getAttribute("data-target"));
+              let count = 0;
+              const speed = target / 50; // Adjust speed here
+
+              const updateCount = () => {
+                if (count < target) {
+                  count += Math.ceil(speed);
+                  if (count > target) count = target;
+                  entry.target.innerText = count + (target > 100 ? "+" : "");
+                  setTimeout(updateCount, 20);
+                }
+              };
+              updateCount();
+              observer.unobserve(entry.target);
+            }
+          });
+        }, options);
+
+        counters.forEach((counter) => {
+          observer.observe(counter);
+        });
+      });
+    </script>
+
     <!-- end strength -->
+
     <!-- services -->
     <section class="py-5" style="background-color: #ffdcd8">
       <div class="container">

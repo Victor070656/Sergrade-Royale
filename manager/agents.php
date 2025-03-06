@@ -36,7 +36,7 @@ $getAgents = $conn->query("SELECT u.*, c.company_name, c.office_address, c.count
     <link rel="stylesheet" href="assets/css/datatables.min.css">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../assets/img/logo.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Title -->
     <title>Sergrade Admin || Agents</title>
 </head>
@@ -133,7 +133,7 @@ $getAgents = $conn->query("SELECT u.*, c.company_name, c.office_address, c.count
 
             <!-- Start Footer Area -->
             <footer class="footer-area bg-white text-center rounded-top-10">
-                <p class="fs-14">© <span class="text-primary">SERGRADE ROYALE</span></p>
+                <p class="fs-14">© <span class="text-primary">SERGRADE</span></p>
             </footer>
             <!-- End Footer Area -->
         </div>
