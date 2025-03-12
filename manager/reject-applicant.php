@@ -40,12 +40,12 @@ if ($applicant["status"] == "rejected") {
     <link rel="stylesheet" href="assets/css/remixicon.css">
     <link rel="stylesheet" href="assets/css/flaticon.css">
     <link rel="stylesheet" href="assets/css/sidebar-menu.css">
-    <link rel="stylesheet" href="assets/css/simplebar.css">
+    <!-- <link rel="stylesheet" href="assets/css/simplebar.css">
     <link rel="stylesheet" href="assets/css/apexcharts.css">
     <link rel="stylesheet" href="assets/css/prism.css">
     <link rel="stylesheet" href="assets/css/rangeslider.css">
     <link rel="stylesheet" href="assets/css/sweetalert.min.css">
-    <link rel="stylesheet" href="assets/css/quill.snow.css">
+    <link rel="stylesheet" href="assets/css/quill.snow.css"> -->
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Favicon -->
@@ -95,11 +95,16 @@ if ($applicant["status"] == "rejected") {
                             <p>Are you sure you want to reject this applicant? it cannot be undone</p>
 
                             <form method="post">
+                                <div class="my-3">
+                                    <label for="reason" class="form-label">Write a reason</label>
+                                    <input type="text" class="form-control" id="reason" placeholder="What is the reason?" name="reason" required>
+                                </div>
                                 <button type="submit" name="send" class="btn btn-danger">Reject</button>
                             </form>
                             <?php
                             if (isset($_POST["send"])) {
-                                $update = mysqli_query($conn, "UPDATE `applicants` SET `status` = 'rejected' WHERE `applicant_id` = '$applicant_id'");
+                                $reason = $_POST["reason"];
+                                $update = mysqli_query($conn, "UPDATE `applicants` SET `status` = 'rejected', `rejection_reason` = '$reason' WHERE `applicant_id` = '$applicant_id'");
 
                                 if ($update) {
                                     echo "<script>alert('Application Rejected!'); location.href='applicants.php'</script>";
@@ -129,21 +134,21 @@ if ($applicant["status"] == "rejected") {
     <!-- End Theme Setting Area -->
 
     <!-- Link Of JS File -->
-    <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/sidebar-menu.js"></script>
-    <script src="assets/js/dragdrop.js"></script>
+    <!-- <script src="assets/js/dragdrop.js"></script>
     <script src="assets/js/rangeslider.min.js"></script>
     <script src="assets/js/sweetalert.js"></script>
     <script src="assets/js/quill.min.js"></script>
     <script src="assets/js/data-table.js"></script>
     <script src="assets/js/prism.js"></script>
-    <script src="assets/js/clipboard.min.js"></script>
+    <script src="assets/js/clipboard.min.js"></script> -->
     <script src="assets/js/feather.min.js"></script>
-    <script src="assets/js/simplebar.min.js"></script>
+    <!-- <script src="assets/js/simplebar.min.js"></script>
     <script src="assets/js/apexcharts.min.js"></script>
     <script src="assets/js/amcharts.js"></script>
-    <script src="assets/js/custom/ecommerce-chart.js"></script>
+    <script src="assets/js/custom/ecommerce-chart.js"></script> -->
     <script src="assets/js/custom/custom.js"></script>
 </body>
 

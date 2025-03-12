@@ -31,7 +31,7 @@ include "config/config.php";
     <div class="container-fluid min-vh-100">
       <div class="row min-vh-100">
         <div class="col-md-7 position-relative d-md-block d-none">
-          <img src="assets/img/login.jpeg" alt="" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left:0">
+          <img src="assets/img/svg/login.webp" alt="" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left:0">
         </div>
         <div class="col-md-5 overflow-y-auto bg-primary py-5 vh-100 d-flex flex-column justify-content-center">
           <form method="post" class="px-4">

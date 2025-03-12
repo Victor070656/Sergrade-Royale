@@ -27,12 +27,12 @@ $getWithdrawals = $conn->query("SELECT w.*, u.firstname, u.lastname FROM `withdr
     <link rel="stylesheet" href="assets/css/remixicon.css">
     <link rel="stylesheet" href="assets/css/flaticon.css">
     <link rel="stylesheet" href="assets/css/sidebar-menu.css">
-    <link rel="stylesheet" href="assets/css/simplebar.css">
+    <!-- <link rel="stylesheet" href="assets/css/simplebar.css">
     <link rel="stylesheet" href="assets/css/apexcharts.css">
     <link rel="stylesheet" href="assets/css/prism.css">
     <link rel="stylesheet" href="assets/css/rangeslider.css">
     <link rel="stylesheet" href="assets/css/sweetalert.min.css">
-    <link rel="stylesheet" href="assets/css/quill.snow.css">
+    <link rel="stylesheet" href="assets/css/quill.snow.css"> -->
     <link rel="stylesheet" href="assets/css/style.css">
 
     <script src="assets/js/jquery-3.6.min.js"></script>
@@ -183,7 +183,7 @@ $getWithdrawals = $conn->query("SELECT w.*, u.firstname, u.lastname FROM `withdr
             });
         });
     </script>
-    <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/sidebar-menu.js"></script>
     <script src="assets/js/dragdrop.js"></script>

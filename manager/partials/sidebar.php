@@ -49,6 +49,30 @@
                     <span class="title">Students</span>
                 </a>
             </li>
+            <li class="menu-item">
+                <a href="add-event.php" class="menu-link ">
+                    <i data-feather="file-plus" class="menu-icon tf-icons"></i>
+                    <span class="title">Add Event</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="events.php" class="menu-link ">
+                    <i data-feather="file" class="menu-icon tf-icons"></i>
+                    <span class="title">News / Events</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="add-blog.php" class="menu-link ">
+                    <i data-feather="file-plus" class="menu-icon tf-icons"></i>
+                    <span class="title">Add Blog</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="blogs.php" class="menu-link ">
+                    <i data-feather="file" class="menu-icon tf-icons"></i>
+                    <span class="title">Blogs</span>
+                </a>
+            </li>
 
             <!-- <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">

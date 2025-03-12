@@ -1,308 +1,41 @@
+<?php
+session_start();
+include "config/config.php";
+
+$getEvents = $conn->query("SELECT * FROM `events` ORDER BY `id` DESC LIMIT 2");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SERGRADE Overseas Education - Best Study Abroad Consultants</title>
+  <title>Sergrade Royale Overseas Education - Best Study Abroad Consultants</title>
   <link
     rel="shortcut icon"
     href="assets/img/logo.png"
     type="image/x-icon" />
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    /> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link
     href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
     rel="stylesheet" />
+  <style>
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
 </head>
 
 <body>
   <!-- navbar -->
-  <header class="position-sticky top-0" style="z-index: 100">
-    <nav class="navbar navbar-expand-lg bg-primary text-light">
-      <div class="container-fluid px-2 px-lg-5">
-        <a class="navbar-brand" href="./">
-          <h4 class="text-light mb-0"><b>Sergrade Royale</b></h4>
-        </a>
-        <button
-          class="navbar-toggler btn-sm border-0"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="bx bx-menu fs-3 text-light"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul
-            class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-2">
-            <li class="nav-item dropdown position-static">
-              <a
-                class="nav-link dropdown-toggle text-light"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Study Destinations
-              </a>
-              <ul class="dropdown-menu position-absolute left-0 w-100">
-                <div class="w-100">
-                  <div class="container p-2">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <a
-                          href="#"
-                          class="nav-link d-flex align-items-center gap-2">
-                          <img
-                            src="assets/img/flags/usa.png"
-                            alt=""
-                            style="width: 35px" />
-                          <span>USA</span>
-                        </a>
-                      </div>
-                      <div class="col-md-4">
-                        <a
-                          href="#"
-                          class="nav-link d-flex align-items-center gap-2">
-                          <img
-                            src="assets/img/flags/ireland.png"
-                            alt=""
-                            style="width: 35px" />
-                          <span>Ireland</span>
-                        </a>
-                      </div>
-                      <div class="col-md-4">
-                        <a
-                          href="#"
-                          class="nav-link d-flex align-items-center gap-2">
-                          <img
-                            src="assets/img/flags/europe.png"
-                            alt=""
-                            style="width: 35px" />
-                          <span>Europe</span>
-                        </a>
-                      </div>
-                      <div class="col-md-4">
-                        <a
-                          href="#"
-                          class="nav-link d-flex align-items-center gap-2">
-                          <img
-                            src="assets/img/flags/canada.png"
-                            alt=""
-                            style="width: 35px" />
-                          <span>Canada</span>
-                        </a>
-                      </div>
-                      <div class="col-md-4">
-                        <a
-                          href="#"
-                          class="nav-link d-flex align-items-center gap-2">
-                          <img
-                            src="assets/img/flags/australia.png"
-                            alt=""
-                            style="width: 35px" />
-                          <span>Australia</span>
-                        </a>
-                      </div>
-                      <div class="col-md-4">
-                        <a
-                          href="#"
-                          class="nav-link d-flex align-items-center gap-2">
-                          <img
-                            src="assets/img/flags/asia.png"
-                            alt=""
-                            style="width: 35px" />
-                          <span>Asia</span>
-                        </a>
-                      </div>
-                      <div class="col-md-4">
-                        <a
-                          href="#"
-                          class="nav-link d-flex align-items-center gap-2">
-                          <img
-                            src="assets/img/flags/uk.png"
-                            alt=""
-                            style="width: 35px" />
-                          <span>United Kingdom</span>
-                        </a>
-                      </div>
-                      <div class="col-md-4">
-                        <a
-                          href="#"
-                          class="nav-link d-flex align-items-center gap-2">
-                          <img
-                            src="assets/img/flags/newz.png"
-                            alt=""
-                            style="width: 35px" />
-                          <span>New Zealand</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ul>
-            </li>
-            <li class="nav-item dropdown position-static">
-              <a
-                class="nav-link dropdown-toggle text-light"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Services
-              </a>
-              <ul class="dropdown-menu position-absolute left-0 w-100">
-                <div class="w-100">
-                  <div class="container p-2">
-                    <div class="row">
-                      <div class="col-lg-9">
-                        <div class="d-flex align-items-center gap-2">
-                          <i class="bx bx-user"></i>
-                          <span class="fw-semibold">For Students</span>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-4">
-                            <ul class="list-unstyled lh-1">
-                              <li>
-                                <a href="#" class="nav-link">Counselling</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Test Preparation</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Country & University Selection</a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="col-md-4">
-                            <ul class="list-unstyled lh-1">
-                              <li>
-                                <a href="#" class="nav-link">Applications & Admissions</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Scholarships</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Internship</a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="col-md-4">
-                            <ul class="list-unstyled lh-1">
-                              <li>
-                                <a href="#" class="nav-link">Education Loan</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Visa Processing</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Allied Services</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-3">
-                        <div class="d-flex flex-column row-gap-3">
-                          <div class="d-flex align-items-center gap-2">
-                            <i class="bx bx-map"></i>
-                            <span class="fw-semibold">For Institutes</span>
-                          </div>
-                          <div class="d-flex align-items-center gap-2">
-                            <i class="bx bx-like"></i>
-                            <span class="fw-semibold">For Partners</span>
-                          </div>
-                          <div class="d-flex align-items-center gap-2">
-                            <i class="bx bx-world"></i>
-                            <span class="fw-semibold">For Franchisees</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">Upcoming Events</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">Contact Us</a>
-            </li>
-            <li class="nav-item dropdown position-static">
-              <a
-                class="nav-link dropdown-toggle text-light"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Company
-              </a>
-              <ul class="dropdown-menu position-absolute left-0 w-100">
-                <div class="w-100">
-                  <div class="container p-2">
-                    <div class="row">
-                      <div class="col-lg-8 mx-auto">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="d-flex flex-column row-gap-3">
-                              <div class="d-flex align-items-center gap-3">
-                                <i class="bx bx-star"></i>
-                                <span class="fw-semibold">About Us</span>
-                              </div>
-                              <div class="d-flex align-items-center gap-3">
-                                <i class="bx bx-news"></i>
-                                <span class="fw-semibold">News & Press</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="d-flex flex-column row-gap-3">
-                              <div class="d-flex align-items-center gap-3">
-                                <i class="bx bx-pen"></i>
-                                <span class="fw-semibold">Blog</span>
-                              </div>
-                              <div class="d-flex align-items-center gap-3">
-                                <i class="bx bx-trophy"></i>
-                                <span class="fw-semibold">Careers</span>
-                                <button class="btn btn-primary btn-sm">
-                                  WE'RE HIRING
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a
-                class="btn btn-outline-light second-btn main-btn lh-1"
-                style="font-size: smaller"><span class="d-block m-0">coursefinder.ai</span>
-                <small>(For Partners)</small></a>
-            </li>
-            <li class="nav-item">
-              <a href="login.php"
-                class="btn btn-light text-danger main-btn second-btn d-flex align-items-center gap-2"
-                style="font-size: smaller"><i class="bx bxs-video fs-6 m-0"></i>
-                <span>Book Online Counselling</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+  <?php include "partials/header.php"; ?>
   <!-- end navbar -->
 
   <main>
@@ -428,7 +161,7 @@
     <section class="py-5" style="background-color: #ffdcd8">
       <div class="container">
         <div class="text-center mb-5">
-          <h1 class="fw-bold">SERGRADE Services & Offerings</h1>
+          <h1 class="fw-bold">Sergrade Royale Services & Offerings</h1>
         </div>
         <div class="row">
           <div class="col-md-7 order-last order-md-first">
@@ -475,7 +208,7 @@
             <p><b>Offerings</b></p>
             <ul class="list-item">
               <li>Innovative technology customized for your business</li>
-              <li>Webinars by University Delegates and SERGRADE Experts</li>
+              <li>Webinars by University Delegates and Sergrade Royale Experts</li>
               <li>Unparalleled end-to-end support</li>
             </ul>
             <a href="#" class="text-decoration-none" style="color: #ff6b56">See More <i class="bx bx-chevron-right"></i></a>
@@ -497,7 +230,7 @@
             <ul class="list-item">
               <li>Business solutions tailor made for your market</li>
               <li>Support for Operations, Events and Marketing</li>
-              <li>Access to SERGRADEs rich Knowledge Repository</li>
+              <li>Access to Sergrade Royales rich Knowledge Repository</li>
             </ul>
             <a href="#" class="text-decoration-none" style="color: #ff6b56">See More <i class="bx bx-chevron-right"></i></a>
           </div>
@@ -529,7 +262,7 @@
             <p><b>Offerings</b></p>
             <ul class="list-item">
               <li>Recruit students from diverse nationalities</li>
-              <li>Access to SERGRADE’s extensive recruitment network</li>
+              <li>Access to Sergrade Royale’s extensive recruitment network</li>
               <li>Enhance brand visibility</li>
             </ul>
             <a href="#" class="text-decoration-none" style="color: #ff6b56">See More <i class="bx bx-chevron-right"></i></a>
@@ -543,10 +276,10 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6">
-            <img src="assets/img/svg/country.png" alt="" class="img-fluid" />
+            <img src="assets/img/svg/country.jpeg" alt="" class="img-fluid" />
           </div>
           <div class="col-md-6">
-            <h1 class="fw-bold mb-3">SERGRADE’s Multi Country Advantage</h1>
+            <h1 class="fw-bold mb-3">Sergrade Royale’s Multi Country Advantage</h1>
             <p class="lead mb-3">The World is your Campus!</p>
             <small>
               Aspire for more. Choose what suits you the best from 800+ global
@@ -562,143 +295,23 @@
     </section>
 
     <!-- webinar -->
-    <section class="py-5 position-relative">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 320"
-        style="position: absolute; top: 0; z-index: 0">
-        <path
-          fill="#0099ff"
-          fill-opacity=".1"
-          d="M0,224L60,229.3C120,235,240,245,360,229.3C480,213,600,171,720,160C840,149,960,171,1080,181.3C1200,192,1320,192,1380,192L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
-      </svg>
-      <div class="container" style="position: relative; z-index: 1">
-        <div class="text-center mb-4">
-          <h1 class="fw-bold">Webinars & Events</h1>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-6">
-            <div
-              class="rounded-4 bg-light shadow"
-              style="border-radius: 15px !important">
-              <div class="">
-                <img
-                  src="assets/img/svg/webinar1.png"
-                  alt=""
-                  class="img-fluid rounded-4" />
-              </div>
-              <div class="p-3">
-                <small class="text-primary mb-3">
-                  3rd - 7th February, 2025 · 12:00 noon - 5:00 pm
-                </small>
-                <h3 class="mb-3">USA Applications Week</h3>
-                <p class="mb-5">
-                  Attend SERGRADE’s USA Applications Week & Apply for Summer & Fall
-                  2025 Intake.
-                </p>
-                <a
-                  href="login.php"
-                  class="text-decoration-none"
-                  style="color: #ff6b56">Register Now <i class="bx bx-chevron-right"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="d-flex flex-column row-gap-3 justify-content-center">
-              <div class="rounded-4 shadow bg-light">
-                <div class="row">
-                  <div class="col-md-4 rounded-4">
-                    <picture class="w-100 rounded-4">
-                      <source
-                        media="(min-width: 768px)"
-                        srcset="assets/img/svg/webinar2a.png"
-                        class="rounded-4" />
-                      <source
-                        media="(max-width: 768px)"
-                        srcset="assets/img/svg/webinar2b.png"
-                        class="rounded-4" />
-                      <img
-                        src="assets/img/svg/webinar2b.png"
-                        alt="Webinar Image"
-                        class="w-100 rounded-4" />
-                    </picture>
-                  </div>
-                  <div class="col-md-8 p-4">
-                    <small class="text-primary mb-4">
-                      Tuesday, 4th February, 2025 · 6:00 pm - 7:30 pm
-                    </small>
-                    <h4 class="">Test Preparation for IELTS</h4>
-                    <p class="mb-5">
-                      Crack your IELTS in one go with 8+ Bands. A Gateway to
-                      High-Ranked
-                    </p>
-                    <a
-                      href="login.php"
-                      class="text-decoration-none"
-                      style="color: #ff6b56">Register Now <i class="bx bx-chevron-right"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="rounded-4 shadow bg-light">
-                <div class="row">
-                  <div class="col-md-4 rounded-4">
-                    <picture class="w-100 rounded-4">
-                      <source
-                        media="(min-width: 768px)"
-                        srcset="assets/img/svg/webinar3a.png"
-                        class="rounded-4" />
-                      <source
-                        media="(max-width: 768px)"
-                        srcset="assets/img/svg/webinar3b.png"
-                        class="rounded-4" />
-                      <img
-                        src="assets/img/svg/webinar3b.png"
-                        alt="Webinar Image"
-                        class="w-100 rounded-4" />
-                    </picture>
-                  </div>
-                  <div class="col-md-8 p-4">
-                    <small class="text-primary mb-4">
-                      Wednesday, 12th February, 2025 · 8:00 pm - 9:30 pm
-                    </small>
-                    <h4 class="">Test Preparation for GRE</h4>
-                    <p class="mb-5">
-                      Get ready to study at a Top-ranked University with 320+
-                      Score in GRE
-                    </p>
-                    <a
-                      href="login.php"
-                      class="text-decoration-none"
-                      style="color: #ff6b56">Register Now <i class="bx bx-chevron-right"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="text-center mt-5">
-          <a href="#" class="text-decoration-none" style="color: #ff6b56">See More <i class="bx bx-chevron-right"></i></a>
-        </div>
-      </div>
-    </section>
+
 
     <!-- tech advantage -->
     <section class="py-5">
       <div class="container">
         <div class="text-center mb-5 col-md-9 mx-auto">
           <h1 class="px-md-5 px-1 fw-bold">
-            SERGRADE’s Tech Advantage Sophisticated Online Platforms
+            Sergrade Royale’s Tech Advantage Sophisticated Online Platforms
           </h1>
         </div>
         <div class="row">
           <div class="col-md-6 order-md-1 order-2">
             <h3>
-              SERGRADE’s Tech Prowess coursefinder.ai – An Uber-Efficient Online
-              Platform
+              Sergrade Royale’s Tech Prowess – An Uber-Efficient Online Platform
             </h3>
             <p>
-              Welcome to coursefinder.ai, an uber efficient online platform
-              for searching courses and managing applications!
+              Welcome to our uber-efficient online platform for searching courses and managing applications!
             </p>
             <ul class="list-item2">
               <li>Search Near Perfect, ‘eligible’ courses</li>
@@ -743,7 +356,7 @@
     <section class="py-5">
       <div class="container">
         <div class="text-center">
-          <h1 class="fw-bold">SERGRADE’s eminent university tie-ups</h1>
+          <h1 class="fw-bold">Sergrade Royale’s eminent university tie-ups</h1>
           <p>
             We represent 69 of World’s Top 300 Universities according to QS
             World Rankings 2025
@@ -809,10 +422,10 @@
     <section class="py-5">
       <div class="container">
         <div class="text-center mb-5">
-          <h1 class="fw-bold">Latest SERGRADE Updates</h1>
+          <h1 class="fw-bold">Latest Sergrade Royale Updates</h1>
         </div>
         <div class="row align-items-center">
-          <div class="col-md-5">
+          <div class="col-md-4">
             <div
               class="rounded-4 p-5 position-relative shadow"
               style="
@@ -829,169 +442,65 @@
               <img
                 src="assets/img/svg/kcupdatesline.svg"
                 alt=""
-                style="height: 150px; position: absolute; right: 0; bottom: 0"
+                style="height: 120px; position: absolute; right: 0; bottom: 0"
                 class="" />
             </div>
           </div>
-          <div class="col-md-7">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="rounded-4 bg-light p-5 text-center h-100 shadow">
-                  <img
-                    src="assets/img/svg/update1.png"
-                    alt=""
-                    class="rounded-3"
-                    style="width: 100px" />
-                  <p class="">IELTS, TOEFL, PTE, Duolingo:</p>
-                  <small class="">
-                    If you're gearing up to spread your wings and study
-                    abroad, we've got some fresh news that you won't want to
-                    miss.
-                  </small>
-                  <a
-                    href="#"
-                    class="text-decoration-none d-block mt-3"
-                    style="color: #ff6b56">Read More <i class="bx bx-chevron-right"></i></a>
+          <?php
+          if ($getEvents->num_rows > 0) {
+            while ($event = $getEvents->fetch_assoc()) {
+          ?>
+              <div class="col-md-4">
+                <div
+                  class="rounded-4 bg-light shadow"
+                  style="border-radius: 15px !important">
+                  <div class="">
+                    <img
+                      src="assets/uploads/event/<?= $event['image'] ?>"
+                      alt=""
+                      style="height: 200px; width: 100%; object-fit: cover;"
+                      class="img-fluid rounded-4" />
+                  </div>
+                  <div class="p-3">
+                    <div class="">
+                      <span class="badge bg-primary"><?= ucfirst($event["post_type"]); ?></span>
+                    </div>
+                    <small class="text-primary mb-3">
+                      <?= date("d M, Y", strtotime($event['event_date'])); ?>
+                    </small>
+                    <h4 class="mb-3 text-truncate text-capitalize"><?= $event['title'] ?></h4>
+                    <p class="mb-3" style="max-height: 100px; overflow: hidden;">
+                      <?= $event['body'] ?>
+                    </p>
+                    <a
+                      href="event-details.php?id=<?= $event['id'] ?>"
+                      class="text-decoration-none"
+                      style="color: #ff6b56">Details <i class="bx bx-chevron-right"></i></a>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="rounded-4 bg-light p-5 text-center h-100 shadow">
-                  <img
-                    src="assets/img/svg/update2.png"
-                    alt=""
-                    class="rounded-3"
-                    style="width: 100px" />
-                  <p class="">
-                    International Student Applications to the US:
-                  </p>
-                  <small class="">
-                    A recent survey from the Institute for International
-                    Education (IIE) reveals that international applications
-                  </small>
-                  <a
-                    href="#"
-                    class="text-decoration-none d-block mt-3"
-                    style="color: #ff6b56">Read More <i class="bx bx-chevron-right"></i></a>
-                </div>
-              </div>
+            <?php
+            }
+          } else {
+            ?>
+            <div class="py-3 px-3 text-center">
+              <p>No Updates Yet</p>
             </div>
-          </div>
+          <?php
+          }
+          ?>
+          
         </div>
-      </div>
     </section>
 
     <!-- blog -->
-    <section class="py-5 position-relative">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 320"
-        style="position: absolute; top: 0; z-index: 0">
-        <path
-          fill="#fdaf4d"
-          fill-opacity=".1"
-          d="M0,224L60,229.3C120,235,240,245,360,229.3C480,213,600,171,720,160C840,149,960,171,1080,181.3C1200,192,1320,192,1380,192L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
-      </svg>
-      <div class="container" style="position: relative; z-index: 1">
-        <div class="text-center mb-4">
-          <h1 class="fw-bold">Blog</h1>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md-6">
-            <div
-              class="rounded-4 bg-light shadow"
-              style="border-radius: 15px !important">
-              <div class="">
-                <img
-                  src="assets/img/svg/blog1.png"
-                  alt=""
-                  class="img-fluid rounded-4" />
-              </div>
-              <div class="p-3">
-                <small class="text-primary mb-3"> Study Abroad </small>
-                <h3 class="mb-3">
-                  New Zealand Student Visa: Types, Cost, Documents,
-                  Application Process & More
-                </h3>
 
-                <p>Feb 05, 2025</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="d-flex flex-column row-gap-3 justify-content-center">
-              <div class="rounded-4 shadow bg-light">
-                <div class="row">
-                  <div class="col-md-4 rounded-4">
-                    <picture class="w-100 rounded-4">
-                      <source
-                        media="(min-width: 768px)"
-                        srcset="assets/img/svg/blog2a.png"
-                        class="rounded-4" />
-                      <source
-                        media="(max-width: 768px)"
-                        srcset="assets/img/svg/blog2b.png"
-                        class="rounded-4" />
-                      <img
-                        src="assets/img/svg/blog2b.png"
-                        alt="Blog Image"
-                        class="w-100 rounded-4" />
-                    </picture>
-                  </div>
-                  <div class="col-md-8 p-4">
-                    <small class="text-primary mb-4">
-                      Student Testimonial
-                    </small>
-                    <h4 class="mb-3">
-                      From Nagpur to Queensland: How SERGRADE Made My Study Abroad
-                    </h4>
-
-                    <p>Dec 06, 2024</p>
-                  </div>
-                </div>
-              </div>
-              <div class="rounded-4 shadow bg-light">
-                <div class="row">
-                  <div class="col-md-4 rounded-4">
-                    <picture class="w-100 rounded-4">
-                      <source
-                        media="(min-width: 768px)"
-                        srcset="assets/img/svg/blog3a.png"
-                        class="rounded-4" />
-                      <source
-                        media="(max-width: 768px)"
-                        srcset="assets/img/svg/blog3b.png"
-                        class="rounded-4" />
-                      <img
-                        src="assets/img/svg/blog3b.png"
-                        alt="Blog Image"
-                        class="w-100 rounded-4" />
-                    </picture>
-                  </div>
-                  <div class="col-md-8 p-4">
-                    <small class="text-primary mb-4"> Coaching </small>
-                    <h4 class="">
-                      GMAT Online Coaching: Benefits, Test Prep, Best Provider
-                      & More
-                    </h4>
-
-                    <p>Feb 05, 2025</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="text-center mt-5">
-          <a href="#" class="text-decoration-none" style="color: #ff6b56">All Blogs <i class="bx bx-chevron-right"></i></a>
-        </div>
-      </div>
-    </section>
 
     <!-- News -->
     <section class="py-5">
       <div class="container">
         <div class="text-center mb-3">
-          <h1 class="fw-bold">SERGRADE in the News</h1>
+          <h1 class="fw-bold">Sergrade Royale in the News</h1>
         </div>
         <div class="row">
           <div class="col-6 col-md-3 px-5 py-3 border border-top-0">
@@ -1053,7 +562,7 @@
       <!-- footer top -->
       <div class="">
         <div class="text-center mb-4">
-          <h3 class="text-light">Stay updated with SERGRADE Overseas</h3>
+          <h3 class="text-light">Stay updated with Sergrade Royale Overseas</h3>
         </div>
         <form class="pb-5 border-bottom border-secondary-subtle">
           <div class="row row-gap-4">
@@ -1086,7 +595,7 @@
       <div class="row py-5 border-bottom border-secondary-subtle">
         <div class="col-md-3 text-light">
           <img src="" alt="" />
-          <h5 class="">About SERGRADE Overseas</h5>
+          <h5 class="">About Sergrade Royale Overseas</h5>
           <p>
             We are the fastest growing EdTech brand operating across
             geographies, facilitating international student recruitments by
@@ -1157,7 +666,7 @@
               <a href="#" class="btn btn-primary btn-sm">NEW!</a>
             </p>
             <p class="lead mb-0 text-secondary">
-              Become SERGRADE Certified Counselor
+              Become Sergrade Royale Certified Counselor
             </p>
             <p class="lead mb-0 text-secondary">Book Online Counselling</p>
             <p class="lead mb-0 text-secondary">USA Online Counselling</p>
@@ -1215,7 +724,7 @@
             </div>
             <div class="col-md-8">
               <div class="d-flex flex-column flex-md-row column-gap-3 row-gap-3 text-secondary text-center">
-                <small>Copyright © SERGRADE Overseas Education 2004-2024</small>
+                <small>Copyright © Sergrade Royale Overseas Education 2004-2024</small>
                 <small>Terms & Conditions</small>
                 <small>Privacy Policy</small>
                 <small>Payment Terms</small>
